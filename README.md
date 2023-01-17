@@ -1,4 +1,4 @@
-# HI emission decomposition
+# HI emission
 
 $HI$: Atomic hydrogen gas\
 $H_2$: Molecular hydrogen gas
