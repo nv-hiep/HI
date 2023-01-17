@@ -3,7 +3,7 @@
 $HI$: Atomic hydrogen gas\
 $H_2$: Molecular hydrogen gas
 
-*Estimate the cold HI gas fraction ( $F_{CNM}$) and opacity correction factor ( $R_{HI}$) using supervised machine learning techniques.*
+**Estimate the cold HI gas fraction ( $F_{CNM}$) and opacity correction factor ( $R_{HI}$) using supervised machine learning techniques.**
 
 Atomic hydrogen gas (HI) is the most abundant element in the interstellar medium (ISM), making up about 75% of the total gas mass. This gas is responsible for emitting the 21-cm line radiation, which is used to study the distribution and kinematics of the interstellar medium. The hydrogen gas is the raw fuel for stars to form. On the journey from the warm atomic phase (WNM: T > 300 K) to stars, the HI gas needs to cool down and settles itself into a cold phase (CNM: T ~ 50-100 K). Gravity then causes the cold gas to collapse and form dense regions, known as molecular clouds ( $H_2$, T ~ 10 K), where the density becomes high and temperature is low enough for hydrogen atoms to form molecules. As the density increases further, these molecular clouds collapse and form protostars, which eventually evolve into fully-formed stars.
 
