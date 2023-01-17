@@ -14,4 +14,6 @@ Combined emission and absorption measurements provide a direct way to estimate t
 temperature, hence, can be readily obtained from emission profiles. However, this assumption may miss a significant amount of gas mass because the emission includes not only contributions from warm, optically-thin gas, but also from cold, optically-thick gas.
 
 The cold HI gas fraction (FCNM) is a crutial parameter to understand the transitions of atomic hydrogen gas from warm (WNM) to cold (CNM) phases and then to molecular clouds (H2). The opacity correction factor ( fraction $R_{HI} = N^{HI} / N^{thin}_{HI}$) indicates how much the optically-thin
-assumption underestimates the true column density.
+assumption underestimates the true column density. These parameters can only be directly measured when having both emission and absorption information. However, while the HI emission is ubiquitous, observing emission and absorption simultaneously requires a good signal-to-noise for absorption, and the limited number of strong radio continuum background sources. 
+
+Here we will train machine learning models on synthetic datasets, then apply the trained models on observed HI emission data to estimate the cold HI gas fraction and opacity correction factor along any directions in the sky.
