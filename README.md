@@ -17,7 +17,7 @@ The atomic gas in the ISM has traditionally been traced by the 21-cm hyperfine s
 Since the 21-cm HI line radiation locates in the radio range of the electromagnetic spectrum, it can penetrate through dust clouds and give us a relatively complete map of the atomic hydrogen in the ISM. Observationally, the HI line is detected primarily in emission, but can also be observed in absorption against a sufficiently bright radio continuum sources (e.g. H II regions, radio galaxies, quasars or active galactic nuclei), or in self-absorption when the arrangement of gas along the line of sight permits it. While 21 cm emission is ubiquitous along any direction in the sky, 21 cm absorption is not.
 
 Full-sky map at 21-cm radio emission line (HI4PI collaboration), center of the Milky Way is in the direction towards the image's center.
-![hi4pi_composite_nogrid_k_on_w](https://user-images.githubusercontent.com/13595525/213612072-c046a67a-e5ce-4996-8a49-c8fbfca2d6e6.jpeg)
+<img width="800" alt="" src="https://user-images.githubusercontent.com/13595525/213612072-c046a67a-e5ce-4996-8a49-c8fbfca2d6e6.jpeg">
 
 An example of emission profiles:\
 <img width="580" alt="" src="https://user-images.githubusercontent.com/13595525/213611479-f492dfe0-0a50-4c15-8745-646b988e6abc.png">
