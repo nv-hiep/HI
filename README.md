@@ -1,6 +1,6 @@
 # Atomic Hydrogen Gas (HI)
 
-### Estimate the cold HI gas fraction ( $F_{CNM}$) and opacity correction factor ( $R_{HI}$) using supervised machine learning techniques.
+### Estimate cold HI gas fraction ( $F_{CNM}$) and opacity correction factor ( $R_{HI}$) using supervised machine learning techniques.
 
 $HI$: Atomic hydrogen gas\
 $H_2$: Molecular hydrogen gas\
