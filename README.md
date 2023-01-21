@@ -43,8 +43,11 @@ $T_s$ : temperature of HI gas cloud, it is often derived from the combination of
 
 
 ## 4. Cold HI gas and opacity correction factor 
-The cold HI gas fraction (FCNM) is a crutial parameter to understand the transitions of atomic hydrogen gas from warm (WNM) to cold (CNM) phases and then to molecular clouds (H2). The opacity correction factor ( fraction $R_{HI} = N^{HI} / N^{thin}_{HI}$) indicates how much the optically-thin
-assumption underestimates the true column density. These parameters can only be directly measured when having both emission and absorption information. However, while the HI emission is ubiquitous, observing emission and absorption simultaneously requires a good signal-to-noise for absorption, and the limited number of strong radio continuum background sources.
+The cold HI gas fraction (FCNM) is a crutial parameter for understanding the transitions of atomic hydrogen gas from warm (WNM) to cold (CNM) phases and then to molecular clouds (H2). The cold HI gas fraction is closely related to the process of star formation. Cold HI gas is denser and more gravitationally unstable than warm HI gas, making it more likely to collapse and form dense regions where new stars can form. Additionally, cold HI gas is more likely to form H2 molecules, which are the building blocks of molecular clouds, and the primary ingredient for star formation.  The CNM is thought to be confined to thin "sheets" or "filaments" within the WNM, which can affect the overall distribution and kinematics of the interstellar medium. Understanding the cold HI gas fraction can also provide insights into the overall dynamics, temperature and density structure of the interstellar medium.
+
+The opacity correction factor ( fraction $R_{HI} = N^{HI} / N^{thin}_{HI}$) indicates how much the optically-thin assumption underestimates the true column density.
+
+These parameters can only be directly measured when having both emission and absorption information. However, while the HI emission is ubiquitous, observing emission and absorption simultaneously requires a good signal-to-noise for absorption, and the limited number of strong radio continuum background sources.
 
 In other words, we DO have full-sky maps of HI emission, but we DO NOT have absorption measurements at any directions (or any pixels) in the sky, we thus do not have a full map of directly-measured FCNM/R_HI.
 
