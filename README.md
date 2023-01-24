@@ -39,7 +39,7 @@ where $T_B (v)$ : emission profile observed by a radio telescope.
 
 Total HI column density along a direction (or line-of-sight): $$\frac{N_\mathrm{HI}}{[\mathrm{cm^{-2}}]} = 1.8224\times 10^{18}\ \frac{T_\mathrm{s}}{\mathrm{[K]}} \int\tau_\mathrm{v}\ \frac{d\mathrm{v}}{\mathrm{[km\ s^{-1}]}}$$
 where $\tau (v)$ : absoprtion profile observed by a radio telescope when poingting the telecope towards a background continuum source behind the HI gas cloud.\
-$T_s$ : temperature of HI gas cloud, it is often derived from the combination of emission profile and absorption profile.
+$T_s$ : temperature of HI gas cloud (referred to as the excitation temperature in general, and spin temperature in radio astronomy), it is often derived from the combination of emission profile and absorption profile.
 
 
 ## 4. Cold HI gas and opacity correction factor 
@@ -52,4 +52,4 @@ These parameters can only be directly measured when having both emission and abs
 In other words, we DO have full-sky maps of HI emission, but we DO NOT have absorption measurements at any directions (or any pixels) in the sky, we thus do not have a full map of directly-measured FCNM/R_HI.
 
 ## 5. Use machine learning to estimate FCNM/R
-In order to derive the maps of FCNM/R (towards the sky areas where spectral emission data are available), we use emission data produced by (hydrodynamic and magnetohydrodynamic) simulations where the ground-truth values of FCNM/R_HI are available to train machine learning models. We will then apply the trained models to observed HI emission data to estimate the cold HI gas fraction and opacity correction factor along any directions in the sky.
+In order to derive the maps of FCNM/R (over large sky areas where spectral emission data are available) without the HI opacity information, we use emission data produced by (hydrodynamic and magnetohydrodynamic) simulations where the ground-truth values of FCNM/R_HI are available to train machine learning models. We will then apply the trained models to observed HI emission data to estimate the cold HI gas fraction and opacity correction factor along any directions in the sky.
