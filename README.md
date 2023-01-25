@@ -27,9 +27,17 @@ An example of absorption profile:\
 ![abs_spec_2](https://user-images.githubusercontent.com/13595525/213610230-bd79bb5d-d236-4b4c-b774-55138242886c.png)
 
 ## 3. Properties of HI gas clouds from emission and absorption measurements
-Combined emission and absorption measurements provide a direct way to estimate the $HI$ optical depth ( $\tau$) and $HI$ spin temperature ( $T_s$), the two crucial parameters for determining the column densities of HI gas ( $N_{HI}$) in both warm and cold phases ( $N_{CNM}, N_{WNM}$, total $N_{HI} = N_{CNM} + N_{WNM}$), and thus the CNM fraction: $F_{CNM} = N_{CNM}/N_{HI}$). The column density under the optically-thin assumption ( $N^{thin}_{HI}$) is proportional to the brightness HI temperature, hence, can be readily obtained from emission profiles. However, this assumption may miss a significant amount of gas mass because the emission includes not only contributions from warm, optically-thin gas, but also from cold, optically-thick gas.
+Combined emission and absorption measurements provide a direct way to estimate the $HI$ optical depth ( $\tau$) and $HI$ spin temperature ( $T_s$), the two crucial parameters for determining the column densities of HI gas ( $N_{HI}$) in both warm and cold phases ( $N_{CNM}, N_{WNM}$, total $N_{HI} = N_{CNM} + N_{WNM}$), and thus the CNM fraction: $F_{CNM} = N_{CNM}/N_{HI}$). The column density under the optically-thin assumption ( $N^{thin}_{HI}$) is proportional to the brightness HI temperature, hence, can be readily obtained from emission profiles. However, this assumption may miss a significant amount of gas mass because the emission includes not only contributions from warm, optically-thin gas, but also from cold, optically-thick gas. In the case when emission/absorption pairs are not available, we alternatively have to apply some kind of opacity correction to the available emission data.
 
-An example of combined emission and absorption measurements:
+Please note here that when calculating column density we consider the WNM as the HI gas with T > 300 K (i.e, WNM includes both UNM and WNM itself) when estimating the total HI column density.
+
+On-/off-source measurements:\
+On-source measurement gives absorption Tb_on.\
+Off-source measurement gives emission Tb_off.\
+![on_off_src_measurements](https://user-images.githubusercontent.com/13595525/214567508-61d8036d-4010-4d4f-b685-0fcefb67c9bd.png)
+
+
+An example of combined emission and absorption spectra:
 <img width="865" alt="" src="https://user-images.githubusercontent.com/13595525/213611901-b662981b-0d43-4604-a27a-1746fe542823.png">
 
 Optically-thin HI column density along a direction (or line-of-sight):
@@ -47,9 +55,11 @@ The cold HI gas fraction (FCNM) is a crutial parameter for understanding the tra
 
 The opacity correction factor ( fraction $R_{HI} = N^{HI} / N^{thin}_{HI}$) indicates how much the optically-thin assumption underestimates the true column density.
 
-These parameters can only be directly measured when having both emission and absorption information. However, while the HI emission is ubiquitous, observing emission and absorption simultaneously requires a good signal-to-noise for absorption, and the limited number of strong radio continuum background sources.
+The CNM fraction (F_CNM) and opacity correction factor (R_HI) can only be directly measured when having both emission and absorption information. However, while the HI emission is ubiquitous, observing emission and absorption simultaneously requires a good signal-to-noise for absorption and a limited number of strong radio continuum background sources. This implies that the HI absorption is too sparse to resolve the spatial distribution of the HI phases.
 
 In other words, we DO have full-sky maps of HI emission, but we DO NOT have absorption measurements at any directions (or any pixels) in the sky, we thus do not have a full map of directly-measured FCNM/R_HI.
 
 ## 5. Use machine learning to estimate FCNM/R
-In order to derive the maps of FCNM/R (over large sky areas where spectral emission data are available) without the HI opacity information, we use emission data produced by (hydrodynamic and magnetohydrodynamic) simulations where the ground-truth values of FCNM/R_HI are available to train machine learning models. We will then apply the trained models to observed HI emission data to estimate the cold HI gas fraction and opacity correction factor along any directions in the sky.
+In order to derive the maps of FCNM/R (over large sky areas where spectral emission data are available) without the HI opacity information, we use synthetic emission data produced by (hydrodynamic and magnetohydrodynamic) simulations where the ground-truth values of FCNM/R_HI are available to train machine learning models.
+
+Here we will make use of representation learning for extracting compact and meaningful information from the datasets, then train supervised ML models using the representation features. We will then apply the trained models to the observed HI emission data to estimate the cold HI gas fraction and opacity correction factor along any direction in the sky.
