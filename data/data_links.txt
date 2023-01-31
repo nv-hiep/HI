@@ -1,0 +1,80 @@
+Data directory:
+https://anu365-my.sharepoint.com/:f:/g/personal/u1129269_anu_edu_au/EoX1Lnz5pldHh3ZSHNTgfPQB_dWCbuWtUeRE_MUQxiohmQ?e=zXvVFs
+
+ML-
+	+ kok2014
+		+ training_data_kok14_galfa.pickle
+	+ saury2014
+		+ cubes
+			+ Tb_n01_pw02_vs12_512_thick_quarter_0_noise_1.0_K_beam_1.45_pix_.fits
+			+ Tb_n01_pw02_vs12_512_thick_quarter_1_noise_1.0_K_beam_1.45_pix_.fits
+			+ Tb_n01_pw02_vs12_512_thick_quarter_2_noise_1.0_K_beam_1.45_pix_.fits
+			+ Tb_n01_pw02_vs12_512_thick_quarter_3_noise_1.0_K_beam_1.45_pix_.fits
+		+ fcnm
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_0.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_1.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_2.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_3.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_0_noise.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_1_noise.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_2_noise.fits
+			+ fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_3_noise.fits
+		+ RHI
+			+ R_map_n01_pw02_vs12_512px_quarter_0.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_1.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_2.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_3.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_0_noise.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_1_noise.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_2_noise.fits
+			+ R_map_n01_pw02_vs12_512px_quarter_3_noise.fits
+
+This directory contains 02 sub-directories:
+1. kok2014:
+	File: training_data_kok14_galfa.pickle
+	A 1-D spectral dataset that was used to extract the Cold HI gas from HI Emission data with Deep Learning (https://ui.adsabs.harvard.edu/abs/2020ApJ...899...15M/abstract).
+
+	Notebook to read the 1D dataset: https://github.com/nv-hiep/HI/blob/main/ML/s0_read_HI_data_CNN_model_Murray_et_al_2020.ipynb
+
+
+2. saury2014: Training/test datasets produced from raw data of numerical Simulation by Saury et al 2014 (https://ui.adsabs.harvard.edu/abs/2014A&A...567A..16S/abstract)
+   	Details are: 
+	high-resolution hydrodynamical simulation of thermally bi-stable turbulence. 
+	Part of their 1024N01 simulation (1024^3 pixels and a physical size of the box of 40 pc) characterized by an initial volume density n0 = 1 cm−3, 
+	a large-scale velocity = 12.5 km s−1 and a spectral weight ζ = 0.2 that controls the modes of the turbulent mixing (here a majority of compressible modes).
+
+	Python notebook to read the data: https://github.com/nv-hiep/HI/blob/main/ML/saury1_read_HI_data_noise_1k_beam_1_5px.ipynb
+
+	a) cubes/: Synthetic PPV cubes computed with full radiative transfer 
+	    		+ added 1K Gaussian random noise to each spectrum 
+				+ convolved with 1.5 pixel size 2D Gaussian kernel to mimic a 30'' beam at 400 pc assuming that each cell in the simulation is 40pc/1024~0.04pc. 
+
+	    Tb_n01_pw02_vs12_512_thick_quarter_0_noise_1.0_K_beam_1.45_pix_.fits : 1K noise + 30'' beam at 400pc #K  cube[:,:512,:512]
+	    Tb_n01_pw02_vs12_512_thick_quarter_1_noise_1.0_K_beam_1.45_pix_.fits : 1K noise + 30'' beam at 400pc #K  cube[:,:512,512:]
+	    Tb_n01_pw02_vs12_512_thick_quarter_2_noise_1.0_K_beam_1.45_pix_.fits : 1K noise + 30'' beam at 400pc #K  cube[:,512:,512:]
+	    Tb_n01_pw02_vs12_512_thick_quarter_3_noise_1.0_K_beam_1.45_pix_.fits : 1K noise + 30'' beam at 400pc #K  cube[:,512:,:512]
+
+	b) fcnm/: "ground-truth" FCNM
+	In order to get the sense of uncertainties: Convolve the  F_CNM  map with GASKAP beam (30 arcseconds) and assume the HI clouds reside at a distance of 400 pc. 
+
+   	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_0.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,:512,:512]
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_1.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,:512,512:]
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_2.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,512:,512:]
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_3.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,512:,:512]
+
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_0_noise.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,:512,:512]
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_1_noise.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,:512,512:]
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_2_noise.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,512:,512:]
+	    fcnm_map_n01_pw02_vs12_Tcut_500K_512px_quarter_3_noise.fits   : CNM mass fraction in the simulation with T cut at 500K. #Unitless cube[:,512:,:512]
+
+    b) RHI/: "ground-truth" RHI
+    	In order to get the sense of uncertainties: Convolve the R_HI  map with GASKAP beam (30 arcseconds) and assume the HI clouds reside at a distance of 400 pc. 
+    	R_map_n01_pw02_vs12_512px_quarter_0.fits                : Correction to optically thin HI. #Unitless                           cube[:,:512,:512]
+    	R_map_n01_pw02_vs12_512px_quarter_1.fits
+    	R_map_n01_pw02_vs12_512px_quarter_2.fits
+    	R_map_n01_pw02_vs12_512px_quarter_3.fits
+
+    	R_map_n01_pw02_vs12_512px_quarter_0_noise.fits
+		R_map_n01_pw02_vs12_512px_quarter_1_noise.fits
+		R_map_n01_pw02_vs12_512px_quarter_2_noise.fits
+		R_map_n01_pw02_vs12_512px_quarter_3_noise.fits  	      	    
