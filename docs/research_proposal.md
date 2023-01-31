@@ -42,16 +42,30 @@ In the second stage of the research, we would like to focus on the 2D representa
 
 # 6. Raw data and resources.
 
-The research will mainly be based on synthetic spectra data with noise in the spectral (velocity) axis, which was put forward by E. Saury et al in 2014 (E. Saury, et, al 2014). 
+The research will mainly be based on synthetic spectra data with noise in the spectral (velocity) axis, which was put forward by E. Saury et al in 2014 (E. Saury, et, al 2014).
+
 The training set is a data cube with a size of (101, 512, 512) includes (512x512) spectra and their ground-truth cold atomic hydrogen gas fraction (FCNM) and opacity correction factor (R), where F_cnm range: from ~0.0 to 1 and R_hi range: >= 1 (E. Saury, et, al 2014).  For model testing, we will use 58 HI spectra samples from [1] as our testing set. This 58 samples contain 30 spectra samples from 21-SPONGE (Murray et al. 2015, 2018b) survey and 28 samples from Millennium Survey (Heiles & Troland 2003a,b). 
-Each testing sample is a 1 × 414 channels of spectra with corresponding R_hi and F_cnm. In order to prevent the uncertainty of the CNN, ten-fold validation will be used in our experiments.  
+
+Each testing sample is a 1 × 414 channels of spectra with corresponding R_hi and F_cnm. In order to prevent the uncertainty of the CNN, ten-fold validation will be used in our experiments. 
+
 Model training will be based on pytorch. Laptop equipped with GTX1080 will be used for CNN trainings. 
 
-- "deep convolutional neural networks is a solution for the data deficiency as CNN contains a huge number of trainable parameters which can extract complex features"... this is not entirely true as-written, but the insight behind it is correct. We aren't so much solving the data deficiency as side-stepping it, so we can predict parameters we care about without needing so many background sources.
+| Data Files  | Usage | Data Shape | description | 
+| ----------- | ----------- | ----------- | ----------- | 
+| Tb_n01_pw02_vs12_512_thick_noise_1.0_K_beam_1.45_pix_.fits    | Training (spectra)       | 512 x 512 x 101 | Synthetic spectra data for training |
+| fcnm_map_n01_pw02_vs12_Tcut_500K_512px.fits   | Training (ground truth)        | 512 x 512 | F_cnm ground truth for training |
+| R_map_n01_pw02_vs12_Tcut_500K_512px.fits   | Training (ground truth)        | 512 x 512 | R_hi ground truth for training |
+| training_data_kok14_galfa.pickle -> X_test | Model Testing | 58 x 414 | spectra data for testing | 
+| training_data_kok14_galfa.pickle -> Y_test | Model Testing | 58 x 2 | F_cnm and R_hi ground truth for testing | 
 
-- "CNN structures are shallow and simple ... probability of overfitting." I think the probability of overfitting is more likely to increase with the number of parameters, not decrease. While often deep networks do better, it's not a rule. Maybe we can "explore other architectures" as a means to improving performance, but I suggest dropping the suggestion that a bigger model is a better model.
+# 7. Timeline.
 
-- With regard to the aim, it seems that there are two key "sub-projects" here:
 
- - 1. As you have said, "Further exploring method of transforming spectra data into 2D data and compare 1D vs 2D CNN model performance." Learn a representation based on 1D HI spectra, and learn a representation based on 2D representations of that spectrum (e.g. spectrogram or line plot). This is an interesting ML problem.
- - 2. Perform regression (using these features) to determine R_hi and F_cnm. The novel idea here is that we can use representation learning t
+
+# 8. References.
+[1] Claire E. Murray, et, al, 2020, Extracting the cold neutral medium from HI emission with deep learning: Implications for Galactic.
+[2] E. Saury, et, al, 2014, The structure of the thermally bistable and turbulent atomic gas in the local interstellar medium. arXiv:1301.3446v1.
+[3] Heiles, C., & Troland, T. H. 2003a, ApJS, 145, 329—. 2003b, ApJ, 586, 1067.
+[4] Murray, C. E., Stanimirovi ́c, S., Goss, W. M., et al. 2015, ApJ, 804, 89.
+
+
