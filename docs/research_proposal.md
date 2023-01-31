@@ -17,19 +17,19 @@ Recently, a study has been put forward by Claire E. Murray, et al where they app
 To be more specific, they first used synthetic spectra data to train the CNN model and then tested the model on 58 ground truth samples. 
 However, there are still some problems in this field that need to be explored and solved.
 
- - 1. The CNN model in the study is simple. More sophisticated design of CNN may leverage the prediction accuracy of R_hi and F_cnm. 
- - 2. The CNN model in the study tends to over-interpret sharp spectral edges, which results in an under-prediction of f_cnm. This phenomenon can be considered as an overfitting problem and may be caused by the relatively simple CNN structure.
- - 3. the value of R-hi and F_cnm in an area usually has a closed relationship with the surrounding area’s R_hi and F_cnm values. The study calculated the values only based on the spectra of the area, which may cause accuracy reduction. We would like to explore the prediction of F_cnm and R_hi using spectra data and surrounding information together.
- - 4. As CNN usually requires large training set and CNN model in the study is lacked of interpretability, one important aspect of the research is to make the model be interpretable to the astronomer.
+ - The CNN model in the study is simple. More sophisticated design of CNN may leverage the prediction accuracy of R_hi and F_cnm. 
+ - The CNN model in the study tends to over-interpret sharp spectral edges, which results in an under-prediction of f_cnm. This phenomenon can be considered as an overfitting problem and may be caused by the relatively simple CNN structure.
+ - the value of R-hi and F_cnm in an area usually has a closed relationship with the surrounding area’s R_hi and F_cnm values. The study calculated the values only based on the spectra of the area, which may cause accuracy reduction. We would like to explore the prediction of F_cnm and R_hi using spectra data and surrounding information together.
+ - As CNN usually requires large training set and CNN model in the study is lacked of interpretability, one important aspect of the research is to make the model be interpretable to the astronomer.
 In summary, there is a need for a better convolutional neural network architecture and data processing technique for the better prediction of R_hi and F_cnm in improving the prediction accuracy and reducing the overfitting problem.
 
 # 4. Objectives.
 
 The objective of the research is to explore new convolutional neural network architectures, which can achieve higher regression accuracy in the R_hi and F_cnm prediction and solving the problem of overfitting in spectra data with sharp edges. Particularly, the study has the following sub-objectives:
- - 1.To provide a review of R_hi and F_cnm calculation methods.
- - 2. Perform regression (using these features) to determine R_hi and F_cnm with the absence of background information. To be more specific, we would like to explore convolutional neural network architectures or new mechanism for leveraging prediction accuracy and reducing overfitting problems.
- - 3. Exploring 2D representation methods from 1D signals. To be more specific, the signal of spectra is a one-dimensional data. We would like to develop method that can represent 1D data with 2D representation and compare model fitting performance with two different data formats. One example is the spectrogram used in audio or ECG signal transformation.
- - 4. As the noise in the universe is huge, which may affect the values in each channel if the spectra data. Extracting the feature and recognize the noise in an spectra vector is important. One potential solution is using self-supervised learning (comparative learning) method to train CNN and make the output as close as possible based on real vector and vector that contains gaussian noise. 
+ - To provide a review of R_hi and F_cnm calculation methods.
+ - Perform regression (using these features) to determine R_hi and F_cnm with the absence of background information. To be more specific, we would like to explore convolutional neural network architectures or new mechanism for leveraging prediction accuracy and reducing overfitting problems.
+ - Exploring 2D representation methods from 1D signals. To be more specific, the signal of spectra is a one-dimensional data. We would like to develop method that can represent 1D data with 2D representation and compare model fitting performance with two different data formats. One example is the spectrogram used in audio or ECG signal transformation.
+ - As the noise in the universe is huge, which may affect the values in each channel if the spectra data. Extracting the feature and recognize the noise in an spectra vector is important. One potential solution is using self-supervised learning (comparative learning) method to train CNN and make the output as close as possible based on real vector and vector that contains gaussian noise. 
 The result of this study will be valuable to astronomy research as well as related data processing fields in developing better practice and tools for handling 1D data regression problems.
 
 
