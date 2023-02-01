@@ -59,7 +59,7 @@ Model training will be based on pytorch. Laptop equipped with GTX1080 will be us
 | training_data_kok14_galfa.pickle -> Y_test | Model Testing | 58 x 2 | F_cnm and R_hi ground truth for testing | 
 
 # 7. Timeline.
-![alt text](HI/docs/timeline.png)
+![alt text](docs/timeline.png)
 
 # 8. References.
 
