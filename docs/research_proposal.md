@@ -59,13 +59,13 @@ Model training will be based on pytorch. Laptop equipped with GTX1080 will be us
 | training_data_kok14_galfa.pickle -> Y_test | Model Testing | 58 x 2 | F_cnm and R_hi ground truth for testing | 
 
 # 7. Timeline.
-![alt text](docs/timeline.png)
+![alt text](HI/docs/timeline.png)
 
 # 8. References.
 
 [1] Claire E. Murray, et, al, 2020, Extracting the cold neutral medium from HI emission with deep learning: Implications for Galactic.\
 [2] E. Saury, et, al, 2014, The structure of the thermally bistable and turbulent atomic gas in the local interstellar medium. arXiv:1301.3446v1.\
 [3] Heiles, C., & Troland, T. H. 2003a, ApJS, 145, 329—. 2003b, ApJ, 586, 1067.\
-[4] Murray, C. E., Stanimirovi ́c, S., Goss, W. M., et al. 2015, ApJ, 804, 89.\
+[4] Murray, C. E., Stanimirovi ́c, S., Goss, W. M., et al. 2015, ApJ, 804, 89.
 
 
