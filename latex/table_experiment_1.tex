@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Experiment Results}
+
+\begin{document}
+
+\maketitle
+
+\section{Experiments 1}
+
+\begin{table}[h!]
+\centering
+% center the table
+\makebox[\linewidth]{
+\begin{tabular}{||c c c||} 
+ \hline
+ Methods & Validation MSE(10^{-3}) & Testing MSE(10^{-3}) \\ [0.5ex] 
+ \hline\hline
+ No positional Info & 5.38 & 5.68  \\ 
+ Curve image & 10.18 & 9.50  \\  
+ Spectrogram image & 9.94 & 9.25 \\
+ Polynomial Features (concatenate in 1st axis) & 4.44* & 4.51*  \\
+ Polynomial Features (concatenate in 0st axis) & 5.56 & 5.80  \\
+ Index Positional Embedding (concatenate in 1st axis) & 4.84 & 4.93  \\  
+ Index Positional Embedding (adding to original vector) & 5.01 & 5.08  \\
+ Sinusoidal Positional Embedding (concatenate in 1st axis) & 4.77 & 12.43  \\ 
+ Sinusoidal Positional Embedding (adding to original vector) & 5.97 & 13.35  \\ 
+ Trainable Positional Embedding (adding to original vector) & 6.33 & 13.16  \\ 
+ [1ex] 
+ \hline
+\end{tabular}
+}
+
+\caption{The best validation mean square error and testing mean square error corresponds to different representations.}
+\label{table:1}
+\end{table}
+
+
+\end{document}
