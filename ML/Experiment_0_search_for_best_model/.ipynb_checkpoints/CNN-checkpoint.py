@@ -68,51 +68,42 @@ class spectra_cnn(nn.Module):
         self.layers = nn.ModuleList()
         self.layers.append(self.conv1)
         self.layers.append(self.bn1)
-        self.layers.append(nn.ReLU())
-        
         self.layers.append(self.conv2)
         self.layers.append(self.bn2)
-        self.layers.append(nn.ReLU())
         count = self.out_channels_1-8
-        if(num_layer>=4):
-            for i in range(0, int((num_layer-4)/2)):
-                #1
-                self.layers.append(nn.Conv2d(in_channels= count, out_channels=count-8,
+        for i in range(0, int((num_layer-4)/2)):
+            # 1
+            self.layers.append(nn.Conv2d(in_channels= count, out_channels=count-8,
                                kernel_size=(1,6), stride=1, padding=0, bias=True,
                                padding_mode='zeros'))
-                self.layers.append(nn.BatchNorm2d(count-8))
-                self.layers.append(nn.ReLU())
-                # 2
-                self.layers.append(nn.Conv2d(in_channels= count-8, out_channels=count-16,
+            self.layers.append(nn.BatchNorm2d(count-8))
+            self.layers.append(nn.ReLU())
+            #2
+            self.layers.append(nn.Conv2d(in_channels= count-8, out_channels=count-16,
                                kernel_size=(1,40), stride=1, padding=0, bias=True,
                                padding_mode='zeros'))
-                self.layers.append(nn.BatchNorm2d(count-16))
-                self.layers.append(nn.ReLU())
-                count = count-16
+            self.layers.append(nn.BatchNorm2d(count-16))
+            self.layers.append(nn.ReLU())
+            count = count-16
         ### count = 32
-        if(num_layer>=4):
-            self.layers.append(nn.Conv2d(in_channels = count, out_channels=16, 
+        self.layers.append(nn.Conv2d(in_channels = count, out_channels=16, 
                                kernel_size=(1,6), stride=1, padding=0, 
                                bias=True, padding_mode='zeros'))
         
-            self.layers.append(nn.BatchNorm2d(16))
-            self.layers.append(nn.ReLU())
+        self.layers.append(nn.BatchNorm2d(16))
         
-            self.layers.append(nn.Conv2d(in_channels= 16, out_channels=8, 
+        self.layers.append(nn.Conv2d(in_channels= 16, out_channels=8, 
                                kernel_size=(1,40), stride=1, 
                                padding=0, bias=True, padding_mode='zeros'))
-            self.layers.append(nn.BatchNorm2d(8))
-            self.layers.append(nn.ReLU())
+        self.layers.append(nn.BatchNorm2d(8))
         
         ###
-        self.layers.append(nn.Flatten())
-        self.layers.append(self.dropout)
-        
-        if(num_layer==2):
-            self.linear = nn.Linear(5920, num_output)
+        if(input_row<=2):
+            self.linear = nn.Linear(1904, num_output)
         else:
-            input_channels = 2608 - 352 * int((num_layer-4)/2)
-            self.linear = nn.Linear(input_channels, num_output)
+            self.linear = nn.Linear(int(1904*(input_row-1)), num_output)
+        self.layers.append(nn.Flatten())
+        self.layers.append(self.linear)
         
         # init parameter
         for m in self.modules():
@@ -129,7 +120,6 @@ class spectra_cnn(nn.Module):
         if(self.lpe==True):
             x = x + self.pos_embedding
         for layer in self.layers[:-1]:
-            #print('layer=', layer)
+            print('layer=', layer)
             x = layer(x)
-        x = self.linear(x)
         return x
