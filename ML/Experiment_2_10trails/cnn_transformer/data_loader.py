@@ -68,9 +68,8 @@ class spectra_loader(Dataset):
             spectra =  np.vstack((spectra,position))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
         elif (self.mode=='poly_concate'):
-            zero = np.linspace(0, 1.0, self.num_column).reshape(1, -1) 
             two =  spectra**2
-            spectra = np.vstack((zero,spectra,two))
+            spectra = np.vstack((spectra,two))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
         else:
             spectra = spectra.reshape(1,1,spectra.shape[0])
@@ -158,13 +157,11 @@ class spectra_loader_alte(Dataset):
                 spectra = spectra.reshape(1, 1,spectra.shape[0])
                 
         elif (self.mode=='poly_concate'):
-            zero = np.linspace(0, 1.0, 414)
             two =  spectra**2
             label = self.y[idx,:]
             if self.transform:
                 c=[]
                 for i in range(len(spectra)):
-                    c.append(zero[i])
                     c.append(spectra[i])
                     c.append(two[i])
                 spectra = np.array(c).astype(np.float64)
@@ -183,6 +180,81 @@ class spectra_loader_alte(Dataset):
     
     
 
+    
+""" 
+    spectra_cube_loader: A class to load the datacube.
+
+    Attributes
+    ----------
+    xy : tuple object
+        training data 
+    transform : set
+        set of transformations for x.
+    target_transform : set
+        set of transformations for y.
+    mode: Str
+        Data representations.
+    num_column: int
+        number of columns for input data.
+
+    Methods
+    -------
+    __getitem__(index):
+        get the data in the index. it will choose the loading methods based on the mode.
+"""
+
+
+# data loader 
+class spectra_cube_loader(Dataset):
+    def __init__(self, xy, transform=None, target_transform=None, pe=None):
+        
+        self.xy = xy
+        self.transform = transform
+        self.target_transform = target_transform
+        self.mode=pe
+        self.num_column = len(self.xy[0][0])
+    def __len__(self):
+        return len(self.xy)
+    
+    def __getitem__(self, idx):
+        spectra = self.xy[idx][0]
+        label = self.xy[idx][1]
+        
+        if (self.mode=='index_concate'):
+            position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
+            spectra = np.vstack((spectra, position))
+            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
+        elif (self.mode=='index_add'):
+            position = np.linspace(0, 1.0, self.num_column).reshape(1, -1)
+            spectra = spectra + position
+            spectra = spectra.reshape(1,1,spectra.shape[1])
+        elif (self.mode=='sin_add'):
+            position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
+            spectra = spectra + position
+            spectra = spectra.reshape(1,1,spectra.shape[1])
+        elif (self.mode=='sin_concate'):
+            position = np.sin(np.linspace(0, 1.0, self.num_column).reshape(1, -1))
+            spectra =  np.vstack((spectra,position))
+            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
+        elif (self.mode=='poly_concate'):
+            two =  spectra**2
+            spectra = np.vstack((spectra,two))
+            spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
+        else:
+            spectra = spectra.reshape(1,1,spectra.shape[0])
+            
+        if self.transform:
+            spectra = np.array(spectra).astype(np.float32)
+            spectra = self.transform(spectra)
+            
+        if self.target_transform:
+            label = np.array(label).astype(np.float32)
+            label = self.target_transform(label)
+            
+        return spectra, label
+    
+
+    
 class ToTensor():
     def __call__(self, sample):
         x = torch.from_numpy(sample)
