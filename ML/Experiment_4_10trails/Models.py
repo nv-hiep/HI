@@ -51,7 +51,7 @@ class PositionalEncoding(nn.Module):
 
     
 """
-    cnn_transformer: A class of the CNN_transformer model.
+    cnn_transformer_small: A class of the CNN_transformer small model.
     
     input Attributes
     ----------
