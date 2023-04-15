@@ -78,10 +78,14 @@ class cnn_transformer_small(nn.Module):
         super(cnn_transformer_small, self).__init__()
         
         self.num_features = 54
+        self.input_row = input_row
+        self.in_channels = in_channels
+        self.input_column=input_column
+        
         self.drop_rate=drop_out_rate
         self.pos_encoder = PositionalEncoding(num_features=self.num_features, sequence_len=6, d_model=9)
         self.lpe=lpe
-        self.pos_embedding = nn.Parameter(torch.randn(6, 9))
+        self.pos_embedding = nn.Parameter(torch.randn(self.in_channels,self.input_row, self.input_column))
         
         # CNN layers
         if(input_row>=2):
@@ -169,6 +173,8 @@ class cnn_transformer_small(nn.Module):
 
     def forward(self, x):
         #print(1, x.size())
+        if(self.lpe==True):
+            x =  x + self.pos_embedding
         x = self.conv1(x)
         x = self.bn1(x)
         x = F.relu(x)
@@ -208,9 +214,6 @@ class cnn_transformer_small(nn.Module):
         x = self.linear(x)
         #print(3, x.size())
         x = x.reshape(x.shape[0], -1, 9)
-        #print(3, x.size())
-        if(self.lpe==True):
-            x = x + self.pos_embedding
         # Transformer MODEL
         x = self.transformer(x)
         x = self.flatten(x)
