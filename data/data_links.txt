@@ -29,6 +29,16 @@ ML-
 			+ R_map_n01_pw02_vs12_512px_quarter_2_noise.fits
 			+ R_map_n01_pw02_vs12_512px_quarter_3_noise.fits
 
+	+ Seta & Federrath 2022
+		+ datacube
+			+ Tb_mpism_comp_1200_thick_noise_1.0_K_beam_1.45_pix.fits
+		+ fcnm
+			+ fcnm_map_mpism_comp_1200_Tcut_500K.fits
+			+ fcnm_map_mpism_comp_1200_Tcut_500K_noise_1.0_K_beam_1.45_pix.fits
+		+ RHI
+			+ R_map_mpism_comp_1200.fits
+			+ R_map_mpism_comp_1200_noise_1.0_K_beam_1.45_pix.fits
+
 This directory contains 02 sub-directories:
 1. kok2014:
 	File: training_data_kok14_galfa.pickle
@@ -77,4 +87,28 @@ This directory contains 02 sub-directories:
     	R_map_n01_pw02_vs12_512px_quarter_0_noise.fits
 		R_map_n01_pw02_vs12_512px_quarter_1_noise.fits
 		R_map_n01_pw02_vs12_512px_quarter_2_noise.fits
-		R_map_n01_pw02_vs12_512px_quarter_3_noise.fits  	      	    
+		R_map_n01_pw02_vs12_512px_quarter_3_noise.fits
+
+3. Seta & Federrath 2022: Training/test datasets produced from raw data of numerical Simulation by Seta & Federrath 2022 (https://ui.adsabs.harvard.edu/abs/2022MNRAS.514..957S/abstract)
+   	Details are: 
+	
+
+	Python notebook to read the data: https://github.com/nv-hiep/HI/blob/main/ML/seta1_read_HI_data_with_noise.ipynb
+
+	a) cubes/: Synthetic PPV cubes computed with full radiative transfer 
+	    		+ added 1K Gaussian random noise to each spectrum
+	    		+ convolved with 1.5 pixel size 2D Gaussian kernel to mimic a 30'' beam at 400 pc assuming that each cell in the simulation is 40pc/1024~0.04pc. 
+
+	    Tb_mpism_comp_1200_thick_noise_1.0_K_beam_1.45_pix.fits : 1K noise + 30'' beam at 400pc #K  cube[:,:512,:512]
+
+	b) fcnm/: "ground-truth" FCNM
+	In order to get a sense of uncertainties: Convolve the  F_CNM  map with GASKAP beam (30 arcseconds) and assume the HI clouds reside at a distance of 400 pc. 
+
+   	    fcnm_map_mpism_comp_1200_Tcut_500K.fits   : CNM mass fraction in the simulation with T cut at 500K. # Unitless [512,512]
+	    fcnm_map_mpism_comp_1200_Tcut_500K_noise_1.0_K_beam_1.45_pix.fits   : CNM mass fraction in the simulation with T cut at 500K. # Unitless [512,512]
+
+    b) RHI/: "ground-truth" RHI
+    	In order to get a sense of uncertainties: Convolve the R_HI  map with GASKAP beam (30 arcseconds) and assume the HI clouds reside at a distance of 400 pc. 
+    	R_map_mpism_comp_1200.fits : Correction to optically thin HI. # Unitless [512,512]
+
+    	R_map_mpism_comp_1200_noise_1.0_K_beam_1.45_pix.fits 	    
