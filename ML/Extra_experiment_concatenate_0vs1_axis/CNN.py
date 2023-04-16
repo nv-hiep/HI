@@ -41,7 +41,8 @@ import torch.nn.functional as F
 class spectra_cnn(nn.Module):
     def __init__(self, num_output=2, in_channels=1, input_row = 2, input_column=414, num_layer = 8, drop_out_rate=0.30, lpe=False):
         super(spectra_cnn, self).__init__()
-        
+        self.in_channels = in_channels
+        self.num_layer = num_layer
         self.num_features = in_channels*input_row*input_column
         self.drop_rate=drop_out_rate
         self.lpe=lpe
@@ -133,3 +134,8 @@ class spectra_cnn(nn.Module):
             x = layer(x)
         x = self.linear(x)
         return x
+    
+    
+    
+    
+    
