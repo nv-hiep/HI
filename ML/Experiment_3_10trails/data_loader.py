@@ -68,7 +68,6 @@ class spectra_loader(Dataset):
             spectra =  np.vstack((spectra,position))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
         elif (self.mode=='poly_concate'):
-            zero = np.linspace(0, 1.0, self.num_column).reshape(1, -1) 
             two =  spectra**2
             spectra = np.vstack((spectra,two))
             spectra = spectra.reshape(1, spectra.shape[0], spectra.shape[1])
